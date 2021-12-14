@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './InputElement.module.css';
 
 const InputElement = ({ text, value, type, name, pattern, title, onChange }) => {
@@ -21,3 +23,13 @@ const InputElement = ({ text, value, type, name, pattern, title, onChange }) => 
 };
 
 export default InputElement;
+
+InputElement.propTypes = {
+  text: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  pattern: PropTypes.string,
+  title: PropTypes.string,
+  onChange: PropTypes.func,
+};

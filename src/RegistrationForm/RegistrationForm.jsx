@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
-import styles from './RegistrationForm.module.css';
+
 import InputElement from './InputElement';
 import Button from '../Button';
+
+import styles from './RegistrationForm.module.css';
 
 class RegistrationForm extends Component {
   render() {
@@ -32,3 +35,7 @@ class RegistrationForm extends Component {
 }
 
 export default RegistrationForm;
+
+RegistrationForm.propTypes = {
+  onSubmit: PropTypes.func,
+};

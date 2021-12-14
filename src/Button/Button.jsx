@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Button = ({ type, text, onClick }) => {
   return (
     <button type={type} onClick={onClick}>
@@ -7,3 +9,9 @@ const Button = ({ type, text, onClick }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  type: PropTypes.oneOf(['submit', 'button', 'reset']).isRequired,
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+};

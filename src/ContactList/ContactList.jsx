@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Button from '../Button';
 import styles from './ContactList.module.css';
 
@@ -7,8 +9,6 @@ const ContactList = ({ contacts, onClick }) => {
   }
 
   const elements = contacts.map(({ name, id, number }) => {
-    // onClick={this.props.onClick}
-
     return (
       <li id={id} key={id} className={styles.list}>
         {name}: {number} <Button type="button" text="Delete" onClick={onClick} />
@@ -19,3 +19,14 @@ const ContactList = ({ contacts, onClick }) => {
 };
 
 export default ContactList;
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string,
+    }),
+  ),
+  onClick: PropTypes.func,
+};
