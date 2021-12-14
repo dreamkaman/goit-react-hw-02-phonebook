@@ -50,13 +50,11 @@ class App extends Component {
     this.state.contacts.filter(contact => contact.name.toUpperCase().includes(text.toUpperCase()));
 
   handleDelete = event => {
-    console.log(event.target.parentElement.id);
-
     const newContacts = this.state.contacts.filter(
       contact => contact.id !== event.target.parentElement.id,
     );
 
-    this.setState(() => ({ contacts: newContacts }));
+    this.setState(() => ({ contacts: newContacts, filter: '' }));
   };
 
   render() {

@@ -4,22 +4,6 @@ import InputElement from './InputElement';
 import Button from '../Button';
 
 class RegistrationForm extends Component {
-  // state = {
-  //   name: '',
-  // };
-  //type, name,pattern,title
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   console.log(event.target);
-  // };
-  // handleChange = event => {
-  //   console.log(event.target.value);
-
-  //   this.setState({
-  //     name: event.target.value,
-  //   });
-  // };
-
   render() {
     return (
       <form className={styles.form} onSubmit={this.props.onSubmit}>

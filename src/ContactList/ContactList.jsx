@@ -6,8 +6,6 @@ const ContactList = ({ contacts, onClick }) => {
     return null;
   }
 
-  console.log('In ContactList ', onClick);
-
   const elements = contacts.map(({ name, id, number }) => {
     // onClick={this.props.onClick}
 
