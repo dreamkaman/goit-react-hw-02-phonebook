@@ -26,6 +26,16 @@ class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    if (this.filterContacts(this.state.name).length) {
+      alert(`${this.state.name} is already in contacts!`);
+
+      this.setState({
+        name: '',
+        number: '',
+      });
+      return;
+    }
+
     this.setState(prevstate => ({
       contacts: [
         ...prevstate.contacts,
@@ -36,10 +46,18 @@ class App extends Component {
     }));
   };
 
-  filterContacts = () =>
-    this.state.contacts.filter(contact =>
-      contact.name.toUpperCase().includes(this.state.filter.toUpperCase()),
+  filterContacts = text =>
+    this.state.contacts.filter(contact => contact.name.toUpperCase().includes(text.toUpperCase()));
+
+  handleDelete = event => {
+    console.log(event.target.parentElement.id);
+
+    const newContacts = this.state.contacts.filter(
+      contact => contact.id !== event.target.parentElement.id,
     );
+
+    this.setState(() => ({ contacts: newContacts }));
+  };
 
   render() {
     return (
@@ -61,7 +79,10 @@ class App extends Component {
             text="Find contacts by name"
             onChange={this.handleChange}
           />
-          <ContactList contacts={this.filterContacts()} />
+          <ContactList
+            contacts={this.filterContacts(this.state.filter)}
+            onClick={this.handleDelete}
+          />
         </Section>
       </>
     );

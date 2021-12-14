@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from './RegistrationForm.module.css';
 import InputElement from './InputElement';
+import Button from '../Button';
 
 class RegistrationForm extends Component {
   // state = {
@@ -40,7 +41,7 @@ class RegistrationForm extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           onChange={this.props.onChange}
         />
-        <button type="submit">Add contact</button>
+        <Button type="submit" text="Add contacts" />
       </form>
     );
   }

@@ -1,12 +1,19 @@
-const ContactList = ({ contacts }) => {
+import Button from '../Button';
+import styles from './ContactList.module.css';
+
+const ContactList = ({ contacts, onClick }) => {
   if (!contacts.length) {
     return null;
   }
 
+  console.log('In ContactList ', onClick);
+
   const elements = contacts.map(({ name, id, number }) => {
+    // onClick={this.props.onClick}
+
     return (
-      <li id={id} key={id}>
-        {name}: {number}
+      <li id={id} key={id} className={styles.list}>
+        {name}: {number} <Button type="button" text="Delete" onClick={onClick} />
       </li>
     );
   });
