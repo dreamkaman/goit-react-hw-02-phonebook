@@ -1,9 +1,9 @@
 import { Component } from 'react';
 
-import RegistrationForm from './RegistrationForm';
+import ContactForm from './ContactForm';
 import Section from './Section';
 import ContactList from './ContactList';
-import InputElement from './RegistrationForm/InputElement';
+import InputElement from './ContactForm/InputElement';
 
 import styles from './App.module.css';
 
@@ -24,12 +24,20 @@ class App extends Component {
     this.setState(() => ({ contacts: newContacts, filter: '' }));
   };
 
+  onSubmit = () =>
+    this.setState(prevstate => ({
+      contacts: [
+        ...prevstate.contacts,
+        { id: this.props.id, name: this.props.name, number: this.props.number },
+      ],
+    }));
+
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <RegistrationForm
-            // onSubmit={this.props.onSubmit}
+          <ContactForm
+            onSubmit={this.onSubmit}
             // onChange={this.props.onChange}
             // name={this.props.name}
             // number={this.props.number}

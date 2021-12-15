@@ -5,9 +5,9 @@ import { nanoid } from 'nanoid';
 import InputElement from './InputElement';
 import Button from '../Button';
 
-import styles from './RegistrationForm.module.css';
+import styles from './ContactForm.module.css';
 
-class RegistrationForm extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -73,8 +73,8 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+export default ContactForm;
 
-RegistrationForm.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func,
 };
