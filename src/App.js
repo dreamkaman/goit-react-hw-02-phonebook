@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
 
 import RegistrationForm from './RegistrationForm';
 import Section from './Section';
@@ -11,39 +10,7 @@ import styles from './App.module.css';
 class App extends Component {
   state = {
     contacts: [],
-    name: '',
-    number: '',
     filter: '',
-  };
-
-  handleChange = event => {
-    const key = event.target.name;
-    this.setState({
-      [key]: event.target.value,
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    if (this.filterContacts(this.state.name).length) {
-      alert(`${this.state.name} is already in contacts!`);
-
-      this.setState({
-        name: '',
-        number: '',
-      });
-      return;
-    }
-
-    this.setState(prevstate => ({
-      contacts: [
-        ...prevstate.contacts,
-        { id: nanoid(), name: this.state.name, number: this.state.number },
-      ],
-      name: '',
-      number: '',
-    }));
   };
 
   filterContacts = text =>
@@ -62,10 +29,11 @@ class App extends Component {
       <>
         <Section title="Phonebook">
           <RegistrationForm
-            onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-            name={this.state.name}
-            number={this.state.number}
+            // onSubmit={this.props.onSubmit}
+            // onChange={this.props.onChange}
+            // name={this.props.name}
+            // number={this.props.number}
+            contacts={this.state.contacts}
           />
         </Section>
         <Section title="Contacts">
@@ -78,7 +46,7 @@ class App extends Component {
             onChange={this.handleChange}
           />
           <ContactList
-            contacts={this.filterContacts(this.state.filter)}
+            contacts={this.filterContacts(this.state.filter)} //!!!!!!!
             onClick={this.handleDelete}
           />
         </Section>
