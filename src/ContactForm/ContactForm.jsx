@@ -73,5 +73,5 @@ class ContactForm extends Component {
 export default ContactForm;
 
 ContactForm.propTypes = {
-  fromAppSubmit: PropTypes.func,
+  onFormSubmit: PropTypes.func,
 };
