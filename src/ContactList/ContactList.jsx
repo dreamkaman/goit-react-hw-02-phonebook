@@ -10,8 +10,8 @@ const ContactList = ({ contacts, onClick }) => {
 
   const elements = contacts.map(({ name, id, number }) => {
     return (
-      <li id={id} key={id} className={styles.list}>
-        {name}: {number} <Button type="button" text="Delete" onClick={onClick} />
+      <li key={id} className={styles.list}>
+        {name}: {number} <Button id={id} type="button" text="Delete" onClick={onClick} />
       </li>
     );
   });

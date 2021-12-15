@@ -17,14 +17,12 @@ class App extends Component {
     this.state.contacts.filter(contact => contact.name.toUpperCase().includes(text.toUpperCase()));
 
   handleDelete = event => {
-    const newContacts = this.state.contacts.filter(
-      contact => contact.id !== event.target.parentElement.id,
-    );
+    const newContacts = this.state.contacts.filter(contact => contact.id !== event.target.id);
 
     this.setState(() => ({ contacts: newContacts, filter: '' }));
   };
 
-  fromAppSubmit = ({ id, name, number }) =>
+  addContact = ({ id, name, number }) =>
     this.setState(prevstate => ({
       contacts: [...prevstate.contacts, { id, name, number }],
       filter: '',
@@ -38,7 +36,7 @@ class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm fromAppSubmit={this.fromAppSubmit} contacts={this.state.contacts} />
+          <ContactForm onFormSubmit={this.addContact} contacts={this.state.contacts} />
         </Section>
         <Section title="Contacts">
           <InputElement

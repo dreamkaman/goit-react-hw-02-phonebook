@@ -13,8 +13,14 @@ class ContactForm extends Component {
     number: '',
   };
 
-  filterContacts = text =>
-    this.props.contacts.filter(contact => contact.name.toUpperCase().includes(text.toUpperCase()));
+  isContactExist = name =>
+    !!this.props.contacts.find(contact => contact.name.toUpperCase().includes(name.toUpperCase()));
+
+  resetFormState = () =>
+    this.setState({
+      name: '',
+      number: '',
+    });
 
   handleChange = event => {
     const key = event.target.name;
@@ -26,22 +32,15 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    if (this.filterContacts(this.state.name).length) {
+    if (this.isContactExist(this.state.name)) {
       alert(`${this.state.name} is already in contacts!`);
 
-      this.setState({
-        name: '',
-        number: '',
-      });
+      this.resetFormState();
       return;
     }
 
-    this.props.fromAppSubmit({ ...this.state, id: nanoid() });
-
-    this.setState({
-      name: '',
-      number: '',
-    });
+    this.props.onFormSubmit({ ...this.state, id: nanoid() });
+    this.resetFormState();
   };
 
   render() {
@@ -74,5 +73,5 @@ class ContactForm extends Component {
 export default ContactForm;
 
 ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
+  fromAppSubmit: PropTypes.func,
 };
