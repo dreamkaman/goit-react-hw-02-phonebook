@@ -36,14 +36,12 @@ class ContactForm extends Component {
       return;
     }
 
-    this.setState(prevstate => ({
-      // contacts: [
-      //   ...prevstate.contacts,
-      //   { id: nanoid(), name: this.state.name, number: this.state.number },
-      // ],
+    this.props.fromAppSubmit({ ...this.state, id: nanoid() });
+
+    this.setState({
       name: '',
       number: '',
-    }));
+    });
   };
 
   render() {

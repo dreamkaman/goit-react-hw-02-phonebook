@@ -24,25 +24,21 @@ class App extends Component {
     this.setState(() => ({ contacts: newContacts, filter: '' }));
   };
 
-  onSubmit = () =>
+  fromAppSubmit = ({ id, name, number }) =>
     this.setState(prevstate => ({
-      contacts: [
-        ...prevstate.contacts,
-        { id: this.props.id, name: this.props.name, number: this.props.number },
-      ],
+      contacts: [...prevstate.contacts, { id, name, number }],
+      filter: '',
     }));
+
+  handleChange = event => {
+    this.setState({ filter: event.target.value });
+  };
 
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm
-            onSubmit={this.onSubmit}
-            // onChange={this.props.onChange}
-            // name={this.props.name}
-            // number={this.props.number}
-            contacts={this.state.contacts}
-          />
+          <ContactForm fromAppSubmit={this.fromAppSubmit} contacts={this.state.contacts} />
         </Section>
         <Section title="Contacts">
           <InputElement
@@ -54,7 +50,7 @@ class App extends Component {
             onChange={this.handleChange}
           />
           <ContactList
-            contacts={this.filterContacts(this.state.filter)} //!!!!!!!
+            contacts={this.filterContacts(this.state.filter)}
             onClick={this.handleDelete}
           />
         </Section>
